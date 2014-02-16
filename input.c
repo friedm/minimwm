@@ -9,7 +9,9 @@ void *keystrs[][2] = {
    { "MS-q", &a_quit }, 
    { "MS-Return", &a_spawnterm },
    { "M-j", &a_focusprev },
-   { "M-k", &a_focusnext }
+   { "M-k", &a_focusnext },
+   { "MS-j", &a_moveprev },
+   { "MS-k", &a_movenext }
 };
 
 void initkeys(void) {

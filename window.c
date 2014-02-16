@@ -70,15 +70,63 @@ struct window *getnextll(struct window *current, struct window *head){
 }
 
 struct window *getprevll(struct window *current, struct window *tail){
-   if (tail->prev->prev == NULL) {
-      return NULL; //empty ll
+   if (tail->prev->prev == NULL) return NULL; //empty ll
+   if (current->prev->prev != NULL) return current->prev; //there is another element to the left
+   else return tail->prev;
+}
+
+void swapnextll(struct window *current, struct window *head) {
+   if (head->next->next == NULL) return; //empty ll   
+   if (current->next->next != NULL) { //swap with it
+      swapadjacentll(current,current->next);
    }
-   if (current->prev->prev != NULL) {
-      return current->prev; //there is another element to the left
+   else {//swap with the first node
+      swapfirstlastll(head->next,current);
    }
-   else {
-      return tail->prev;
+}
+
+void swapprevll(struct window *current, struct window *tail) {
+   if (tail->prev->prev == NULL) return; //empty ll
+   if (current->prev->prev != NULL) { //swap   
+      swapadjacentll(current->prev,current);
    }
+   else {//swap with the last node
+      swapfirstlastll(current,tail->prev);
+   }
+}
+
+void swapadjacentll(struct window *first, struct window *second) {
+   if (first->next != second || second->prev != first) {
+      l("swapadjacentll -- nodes not adjacent");
+      return;
+   }
+   struct window temp = *second;
+   
+   second->prev = first->prev;
+   second->next = first;
+   first->prev = second;
+   first->next = temp.next;
+
+   first->next->prev = first;
+   second->prev->next = second;
+}
+
+void swapfirstlastll(struct window *first, struct window *last) {
+   if (first->prev->prev != NULL || last->next->next != NULL) {
+      l("swapfirstlastll -- nodes not first and last");
+      return;
+   }
+   struct window temp = *last;
+   
+   last->prev = first->prev;
+   last->next = first->next;
+   first->prev = temp.prev;
+   first->next = temp.next;
+
+   first->next->prev = first;//tail node
+   first->prev->next = first;
+   last->prev->next = last;//head node
+   last->next->prev = last;
 }
 
 void logll(struct window *head) {

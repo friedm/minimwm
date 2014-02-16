@@ -17,3 +17,11 @@ int a_focusprev(void) {
    focusprevwindow();
    return 0;
 }
+
+int a_movenext(void) {
+   movewindownext();
+}
+
+int a_moveprev(void) {
+   movewindowprev();
+}
