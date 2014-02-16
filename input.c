@@ -1,9 +1,15 @@
 #include "input.h"
+#include "actions.h"
 
-const char *keystrs[] = {
-   "MS-q",     //key 0 
-   "MS-Return", //key 1
-   "S-c"     //key 2
+/*
+ * Defines and handles key presses
+ */
+
+void *keystrs[][2] = {
+   { "MS-q", &a_quit }, 
+   { "MS-Return", &a_spawnterm },
+   { "M-j", &a_focusprev },
+   { "M-k", &a_focusnext }
 };
 
 void initkeys(void) {
@@ -12,8 +18,9 @@ void initkeys(void) {
 
    int i;
    for (i=0; i<numkeys; i++) {
-      keycodes[i].code = getkeycodefromstring(keystrs[i]);
-      keycodes[i].mask = getmaskstr(keystrs[i]); 
+      keycodes[i].code = getkeycodefromstring(keystrs[i][0]);
+      keycodes[i].mask = getmaskstr(keystrs[i][0]); 
+      keycodes[i].action = keystrs[i][1];
    }
 }
 
@@ -31,18 +38,11 @@ void grabkeys(void) {
 
 int handlekey(int code, int mask) {
    int key = findregisteredkey(code,mask);
-   if (key == -1) return 0;
+   if (key == -1) return 0;//not a registered key
 
-   switch(key) {
-      case 0: return 1; break;
-      case 1: 
-              return spawn("/usr/bin/urxvt"); 
-              break;
-      case 2: l("WHEEEE"); break;
-   }
+   return keycodes[key].action();
 }
 
-//could.... sort key codes and do a binary search, but really unnecessary
 int findregisteredkey(int code, int mask) {
    int i;
    for (i=0; i<numkeys; i++) {

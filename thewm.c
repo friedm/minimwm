@@ -6,9 +6,11 @@
 #include "thewm.h"
 #include "events.h"
 #include "input.h"
+#include "tile.h"
 
 /*
- * Basic communication with X
+ * thewm - mouse's bane
+ * author: Matt Friedman
  */
 
 int main(void) {
@@ -25,6 +27,8 @@ int main(void) {
 
    //allocate memory
    initkeys();
+   initdesktops();
+   initscreens();
 
    XSelectInput(display, root, SubstructureRedirectMask|ButtonPressMask|SubstructureNotifyMask|PropertyChangeMask);
    XSync(display, False);
@@ -41,6 +45,8 @@ int main(void) {
    XCloseDisplay(display);
 
    //free memory 
+   freescreens();
+   freedesktops();
    freekeys();
 
    closelog();

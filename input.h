@@ -6,6 +6,7 @@
 struct key {
    int code;
    int mask;
+   int (*action)();
 };
 struct key *keycodes;
 

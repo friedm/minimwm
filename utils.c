@@ -2,6 +2,10 @@
 
 #include "utils.h"
 
+/*
+ * Parse strings, deal with key codes, etc...
+ */
+
 KeyCode getKCode(KeySym k) {
    return XKeysymToKeycode(display, k);
 }
