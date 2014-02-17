@@ -15,6 +15,7 @@ void *keystrs[][2] = {
    { "MS-k", &a_movenext },
    { "M-h", &a_lesswidth },
    { "M-l", &a_morewidth },
+   { "M-semicolon", &a_resetwidth },
    { "M-1", &a_changedesk1 },
    { "M-2", &a_changedesk2 },
    { "M-3", &a_changedesk3 },

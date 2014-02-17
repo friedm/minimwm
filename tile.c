@@ -32,6 +32,17 @@ void changecurrentwindowwidth(int change) {
    }
 }
 
+void resetcurrentwindowwidths(void) {
+   int count = sizell(desktops[screens[currentscreen].desktop].headwin);
+   if (count == 0) return; //nothing to do
+   struct window *trav = desktops[screens[currentscreen].desktop].headwin; 
+   while (trav->next->next != NULL) {
+      trav->next->width = screens[currentscreen].width / count;
+      trav->next->width += screens[currentscreen].width % count;
+      trav = trav->next;
+   }
+}
+
 void unmapwindows(void) {
    struct window *trav = desktops[screens[currentscreen].desktop].headwin;
    while (trav->next->next != NULL) {

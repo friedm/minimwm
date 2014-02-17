@@ -14,6 +14,7 @@ int a_moveprev(void);
 
 int a_lesswidth(void);
 int a_morewidth(void);
+int a_resetwidth(void);
 
 int a_changedesk1(void);
 int a_changedesk2(void);
