@@ -2,10 +2,9 @@ CODE ORGANIZATION!
 stop the "return 0" madness
 separate tile.c
 
-bug -- window moving
+bug -- can adjust window width to negative, cause crash
 bug -- window width travels
 bug -- force closing a window causes a crash
-bug -- spotify crashes
-bug -- can adjust window width to negative, cause crash
+bug -- crashes on programs with login windows, spotify, steam
 
 think of a better name

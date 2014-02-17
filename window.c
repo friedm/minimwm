@@ -76,31 +76,43 @@ struct window *getprevll(struct window *current, struct window *tail){
    else return tail->prev;
 }
 
-void swapnextll(struct window *current, struct window *head) {
+struct window *swapnextll(struct window *current, struct window *head) {
    if (head->next->next == NULL) return; //empty ll   
    if (current->next->next != NULL) { //swap with it
       swapll(current,current->next);
+      return current->next;
    }
    else {//swap with the first node
       swapll(head->next,current);
+      return head->next;
    }
 }
 
-void swapprevll(struct window *current, struct window *tail) {
+struct window *swapprevll(struct window *current, struct window *tail) {
    if (tail->prev->prev == NULL) return; //empty ll
    if (current->prev->prev != NULL) { //swap   
       swapll(current->prev,current);
+      return current->prev;
    }
    else {//swap with the last node
       swapll(current,tail->prev);
+      return tail->prev;
    }
 }
 
 void swapll(struct window *first, struct window *last) {
    //fake it
-   Window temp = first->window;
+   Window twin = first->window;
+   int twidth = first->width;
+   int tignore = first->ignore;
+
    first->window = last->window;
-   last->window = temp;
+   first->width = last->width;
+   first->ignore = last->ignore;
+
+   last->window = twin;
+   last->width = twidth;
+   last->ignore = tignore;
 }
 
 int sizell(struct window *head) {

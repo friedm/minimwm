@@ -27,8 +27,8 @@ char findremovell(Window window,struct window *head);
 struct window *getnextll (struct window *current, struct window *head);
 struct window *getprevll (struct window *current, struct window *tail);
 
-void swapnextll(struct window *current, struct window *head);
-void swapprevll(struct window *current, struct window *tail);
+struct window *swapnextll(struct window *current, struct window *head);
+struct window *swapprevll(struct window *current, struct window *tail);
 
 void swapll(struct window *first, struct window *second);
 

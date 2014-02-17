@@ -66,14 +66,14 @@ void switchprevwindow(void) {
 
 void movewindownext(void) {
    if (desktops[screens[currentscreen].desktop].current == NULL) return; //empty desktop, nothing to do   
-   swapnextll(
+   desktops[screens[currentscreen].desktop].current = swapnextll(
          desktops[screens[currentscreen].desktop].current,
          desktops[screens[currentscreen].desktop].headwin);
 }
 
 void movewindowprev(void) {
    if (desktops[screens[currentscreen].desktop].current == NULL) return; //empty desktop, nothing to do
-   swapprevll(
+   desktops[screens[currentscreen].desktop].current = swapprevll(
          desktops[screens[currentscreen].desktop].current,
          desktops[screens[currentscreen].desktop].tailwin);
 }
