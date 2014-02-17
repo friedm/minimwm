@@ -4,7 +4,11 @@ separate tile.c
 
 bug -- can adjust window width to negative, cause crash
 bug -- window width travels
-bug -- force closing a window causes a crash
-bug -- crashes on programs with login windows, spotify, steam
+bug -- spotify can still crash if it is force quit
+
+actions to cycle current screen
+action to move current window to next screen's desktop
+when another screen has a desktop, and the current screen wants to swap to it,
+   also swap the other screen (exchange desktops) -- no two screens should ever point to the same desktop
 
 think of a better name

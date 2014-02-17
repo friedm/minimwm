@@ -19,7 +19,6 @@ void freedesktops(void) {
 }
 
 void addwindowdesktop(Window w) {
-   ld(desktops[screens[currentscreen].desktop].current);
    desktops[screens[currentscreen].desktop].current = addll(
          desktops[screens[currentscreen].desktop].headwin,
          w);
@@ -34,22 +33,46 @@ void removecurrentwindowdesktop(void) { //the current one
 }
 
 //traverse structure, find and remove specific window id
-void removewindow(Window winid) {
+int removewindow(Window winid) {
    if (desktops[screens[currentscreen].desktop].current != NULL && 
          desktops[screens[currentscreen].desktop].current->window == winid) {
 
       removecurrentwindowdesktop();
-      return;
+      return 1;
    }
-
 
    int i;
    for (i=0; i<NUM_DESKTOPS; i++) {
       if (findremovell(winid,desktops[i].headwin)) {
          adjustwidthsll(desktops[screens[currentscreen].desktop].headwin,screens[currentscreen].width);
-         return;//assuming the window ids are unique
+         return 1;//assuming the window ids are unique
       }
    }
+   return 0;
+}
+
+int removewindowfromcurrentdesktop(Window winid) {
+   if (desktops[screens[currentscreen].desktop].current != NULL &
+         desktops[screens[currentscreen].desktop].current->window == winid) {
+      removecurrentwindowdesktop();
+      return 1;
+   }
+   if (findremovell(winid, desktops[screens[currentscreen].desktop].headwin)) {
+      adjustwidthsll(desktops[screens[currentscreen].desktop].headwin,screens[currentscreen].width);
+      return 1;
+   }
+   return 0;
+}
+
+int windowadded(Window window) {
+   int i;
+   for (i=0; i<NUM_DESKTOPS; i++) {
+      struct window *trav;
+      for (trav = desktops[i].headwin; trav->next->next != NULL; trav = trav->next) {
+         if (trav->next->window == window) return 1;
+      }
+   }
+   return 0;
 }
 
 void switchnextwindow(void) {

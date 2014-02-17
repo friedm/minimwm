@@ -20,7 +20,7 @@ struct window *addll(struct window *head, Window window){
    struct window * newwindow = malloc(sizeof(struct window));
    newwindow->ignore = 0;
    newwindow->window = window;
-   newwindow->width = -1;//needs to be initialized
+   newwindow->width = -1;//needs to be initialized later
 
    newwindow->prev = head;
    newwindow->next = head->next;

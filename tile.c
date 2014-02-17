@@ -49,7 +49,8 @@ void resetcurrentwindowwidths(void) {
    }
 }
 
-void unmapwindows(void) {
+void unmapwindows(void) {//prevent unmap event from happening for these windows
+   XChangeWindowAttributes(display, root, CWEventMask, &(XSetWindowAttributes){.do_not_propagate_mask = SubstructureNotifyMask});
    struct window *trav = desktops[screens[currentscreen].desktop].headwin;
    while (trav->next->next != NULL) {
       XUnmapWindow(display,trav->next->window);
@@ -57,7 +58,8 @@ void unmapwindows(void) {
    }
 }
 
-void mapwindows(void) {
+void mapwindows(void) {//allow unmap events now
+   XChangeWindowAttributes(display, root, CWEventMask, &(XSetWindowAttributes){.event_mask = SubstructureRedirectMask|ButtonPressMask|SubstructureNotifyMask|PropertyChangeMask});
    struct window *trav = desktops[screens[currentscreen].desktop].headwin;
    while (trav->next->next != NULL) {
       XMapWindow(display,trav->next->window);
