@@ -13,6 +13,8 @@ void updatefocus(void);
 void focusnextwindow(void);
 void focusprevwindow(void);
 
+void changecurrentwindowwidth(int); 
+
 void unmapwindows(void);
 void mapwindows(void);
 

@@ -20,6 +20,18 @@ void focusprevwindow(void) {
    updatefocus();
 }
 
+void changecurrentwindowwidth(int change) {
+   int count = sizell(desktops[screens[currentscreen].desktop].headwin);
+   if (count == 0 || count == 1) return;
+   int diff = (count-1) * change;
+   struct window *trav = desktops[screens[currentscreen].desktop].headwin;
+   while (trav->next->next != NULL) {
+      if (trav->next == desktops[screens[currentscreen].desktop].current) trav->next->width += diff;
+      else trav->next->width -= change;
+      trav = trav->next;
+   }
+}
+
 void unmapwindows(void) {
    struct window *trav = desktops[screens[currentscreen].desktop].headwin;
    while (trav->next->next != NULL) {
@@ -47,23 +59,14 @@ void changedesktop(int desk) {
 void tilevertical(void) {//tile windows horizontally
    int width = screens[currentscreen].width;
    int height = screens[currentscreen].height;
-   int count = 0;
 
-   struct window *trav = desktops[screens[currentscreen].desktop].headwin;
-   while(trav->next->next != NULL) {
-      count ++;         
-      trav = trav->next;
-   }
-   if (count == 0) return; //no windows
-
-   int avgwidth = width / count;
-   avgwidth += width % count;
    int pos = 0;
 
-   trav = desktops[screens[currentscreen].desktop].headwin;
+   //assume all width properties add to screen width
+   struct window *trav = desktops[screens[currentscreen].desktop].headwin;
    while(trav->next->next != NULL) {
-      XMoveResizeWindow(display,trav->next->window,pos,0,avgwidth,height);
-      pos += avgwidth;
+      XMoveResizeWindow(display, trav->next->window,pos,0,trav->next->width,height);
+      pos += trav->next->width;
       trav = trav->next;
    }
 }

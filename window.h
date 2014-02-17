@@ -12,7 +12,7 @@
 struct window {
    Window window;//X window reference
    char ignore;//if true, this window isn't here
-   //int width;//possibly percentages of the screen, won't be used for every tiling algorithm
+   int width;//possibly percentages of the screen, won't be used for every tiling algorithm
    //int height;
    struct window *next;
    struct window *prev; 
@@ -31,5 +31,8 @@ void swapnextll(struct window *current, struct window *head);
 void swapprevll(struct window *current, struct window *tail);
 
 void swapll(struct window *first, struct window *second);
+
+int sizell(struct window *head);
+void adjustwidthsll(struct window *head, int screenwidth);
 
 void logll (struct window *head);

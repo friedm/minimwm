@@ -12,6 +12,9 @@ int a_focusprev(void);
 int a_movenext(void);
 int a_moveprev(void);
 
+int a_lesswidth(void);
+int a_morewidth(void);
+
 int a_changedesk1(void);
 int a_changedesk2(void);
 int a_changedesk3(void);

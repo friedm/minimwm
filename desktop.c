@@ -23,12 +23,14 @@ void addwindowdesktop(Window w) {
    desktops[screens[currentscreen].desktop].current = addll(
          desktops[screens[currentscreen].desktop].headwin,
          w);
+   adjustwidthsll(desktops[screens[currentscreen].desktop].headwin,screens[currentscreen].width);
 }
 
 void removecurrentwindowdesktop(void) { //the current one
   desktops[screens[currentscreen].desktop].current = removell(
          desktops[screens[currentscreen].desktop].current,
          desktops[screens[currentscreen].desktop].headwin);
+  adjustwidthsll(desktops[screens[currentscreen].desktop].headwin,screens[currentscreen].width);
 }
 
 //traverse structure, find and remove specific window id
@@ -43,7 +45,10 @@ void removewindow(Window winid) {
 
    int i;
    for (i=0; i<NUM_DESKTOPS; i++) {
-      if (findremovell(winid,desktops[i].headwin)) return;//assuming the window ids are unique
+      if (findremovell(winid,desktops[i].headwin)) {
+         adjustwidthsll(desktops[screens[currentscreen].desktop].headwin,screens[currentscreen].width);
+         return;//assuming the window ids are unique
+      }
    }
 }
 

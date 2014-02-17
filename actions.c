@@ -36,6 +36,18 @@ int a_moveprev(void) {
    return 0;
 }
 
+int a_lesswidth(void) {
+   changecurrentwindowwidth(-20); 
+   tile();
+   return 0;
+}
+
+int a_morewidth(void) {
+   changecurrentwindowwidth(20);
+   tile();
+   return 0;
+}
+
 int a_changedesk1(void) { changedesktop(0); return 0; }
 int a_changedesk2(void) { changedesktop(1); return 0; }
 int a_changedesk3(void) { changedesktop(2); return 0; }

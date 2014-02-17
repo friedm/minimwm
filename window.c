@@ -20,6 +20,7 @@ struct window *addll(struct window *head, Window window){
    struct window * newwindow = malloc(sizeof(struct window));
    newwindow->ignore = 0;
    newwindow->window = window;
+   newwindow->width = -1;//needs to be initialized
 
    newwindow->prev = head;
    newwindow->next = head->next;
@@ -100,6 +101,68 @@ void swapll(struct window *first, struct window *last) {
    Window temp = first->window;
    first->window = last->window;
    last->window = temp;
+}
+
+int sizell(struct window *head) {
+   int count = 0;
+   struct window *trav = head;
+   while(trav->next->next != NULL) {
+      count ++;         
+      trav = trav->next;
+   }
+   return count;
+}
+
+int numuninitwidthll(struct window *head) {
+   int count = 0;
+   struct window *trav = head;
+   while (trav->next->next != NULL) {
+      if (trav->next->width == -1) count ++;
+      trav = trav->next;
+   }
+   return count;
+}
+
+/*
+ * A window has been added, and its width is -1
+ * need to decrease all windows widths, and set the new one
+ * to the remainder
+ */
+void adjustwidthsll(struct window *head, int screensize) {
+   //check sum
+   int count = sizell(head);
+
+   int numuninit = numuninitwidthll(head);
+   if (numuninit == 1) { //adding new window, decrease all widths
+      int sum = 0;
+      struct window *newnode;
+      struct window *trav = head;
+      while (trav->next->next != NULL) {
+         if (trav->next->width != -1) {
+            trav->next->width = ((count - 1) * trav->next->width) / count;
+            trav->next->width += ((count -1) * trav->next->width) % count;
+            sum += trav->next->width;
+         }
+         else newnode = trav->next;
+         trav = trav->next;
+      }
+
+      if (!newnode)
+         l("ERROR, adjustwidthsll");
+      else newnode->width = screensize - sum;
+   } 
+   else if (numuninit == 0) { //a node has been removed, increase all widths
+      struct window *trav = head;
+      while(trav->next->next != NULL) {
+         if (count == 0) return; //nothing to do
+         trav->next->width = ((count + 1) * trav->next->width) / (count);
+         trav->next->width += ((count + 1) * trav->next->width) % (count);
+         trav = trav->next;
+      }
+   }
+   else {
+      l("ERROR, adjustwidthsll -- more than one node added between calls");
+   }
 }
 
 void logll(struct window *head) {

@@ -13,6 +13,8 @@ void *keystrs[][2] = {
    { "M-k", &a_focusnext },
    { "MS-j", &a_moveprev },
    { "MS-k", &a_movenext },
+   { "M-h", &a_lesswidth },
+   { "M-l", &a_morewidth },
    { "M-1", &a_changedesk1 },
    { "M-2", &a_changedesk2 },
    { "M-3", &a_changedesk3 },
