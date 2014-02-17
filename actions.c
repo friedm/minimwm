@@ -9,6 +9,11 @@ int a_spawnterm(void) {
    return spawn("/usr/bin/urxvt");
 }
 
+int a_killcurrent(void) {
+   killcurrent();
+   return 0;
+}
+
 int a_toggletilealg(void) {
    toggletilealg();
    tile();

@@ -4,6 +4,7 @@
 
 int a_quit(void);
 int a_spawnterm(void);
+int a_killcurrent(void);
 
 int a_toggletilealg(void);
 

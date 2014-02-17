@@ -10,6 +10,12 @@ void updatefocus(void) {
    XSync(display,False);
 }
 
+void killcurrent(void) {
+   if (desktops[screens[currentscreen].desktop].current == NULL) return; //nothing to kill
+   kill(desktops[screens[currentscreen].desktop].current->window);
+   l("killed");
+}
+
 void focusnextwindow(void) {
    switchnextwindow();
    updatefocus();

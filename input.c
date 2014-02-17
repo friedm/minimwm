@@ -8,6 +8,7 @@
 void *keystrs[][2] = {
    { "MS-q", &a_quit }, 
    { "MS-Return", &a_spawnterm },
+   { "MS-c", &a_killcurrent },
    { "M-space", &a_toggletilealg },
    { "M-j", &a_focusprev },
    { "M-k", &a_focusnext },

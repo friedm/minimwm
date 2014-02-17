@@ -9,3 +9,4 @@ int getkeycodefromstring(const char *);
 
 
 int spawn(const char *);
+void kill(Window window);
