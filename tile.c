@@ -56,6 +56,22 @@ void changedesktop(int desk) {
    updatefocus();
 }
 
+void movecurrenttodesktop(int desk) {
+   int olddesk = screens[currentscreen].desktop;
+   if (desktops[olddesk].current == NULL) return;//no current window, nothing to do
+   unmapwindows();
+
+   Window window = desktops[olddesk].current->window;
+   removecurrentwindowdesktop();
+   screens[currentscreen].desktop = desk;
+   addwindowdesktop(window);
+   screens[currentscreen].desktop = olddesk;
+
+   mapwindows();
+   tile();
+   updatefocus();
+}
+
 void tilevertical(void) {//tile windows horizontally
    int width = screens[currentscreen].width;
    int height = screens[currentscreen].height;

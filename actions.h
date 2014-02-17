@@ -25,3 +25,14 @@ int a_changedesk7(void);
 int a_changedesk8(void);
 int a_changedesk9(void);
 int a_changedesk0(void);
+
+int a_movedesk1(void);
+int a_movedesk2(void);
+int a_movedesk3(void);
+int a_movedesk4(void);
+int a_movedesk5(void);
+int a_movedesk6(void);
+int a_movedesk7(void);
+int a_movedesk8(void);
+int a_movedesk9(void);
+int a_movedesk0(void);

@@ -24,7 +24,18 @@ void *keystrs[][2] = {
    { "M-7", &a_changedesk7 },
    { "M-8", &a_changedesk8 },
    { "M-9", &a_changedesk9 },
-   { "M-0", &a_changedesk0 }
+   { "M-0", &a_changedesk0 },
+   { "MS-1", &a_movedesk1 },
+   { "MS-2", &a_movedesk2 },
+   { "MS-3", &a_movedesk3 },
+   { "MS-4", &a_movedesk4 },
+   { "MS-5", &a_movedesk5 },
+   { "MS-6", &a_movedesk6 },
+   { "MS-7", &a_movedesk7 },
+   { "MS-8", &a_movedesk8 },
+   { "MS-9", &a_movedesk9 },
+   { "MS-0", &a_movedesk0 }
+
 };
 
 void initkeys(void) {

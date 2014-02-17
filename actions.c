@@ -58,3 +58,14 @@ int a_changedesk7(void) { changedesktop(6); return 0; }
 int a_changedesk8(void) { changedesktop(7); return 0; }
 int a_changedesk9(void) { changedesktop(8); return 0; }
 int a_changedesk0(void) { changedesktop(9); return 0; }
+
+int a_movedesk1(void) { movecurrenttodesktop(0); return 0; }
+int a_movedesk2(void) { movecurrenttodesktop(1); return 0; }
+int a_movedesk3(void) { movecurrenttodesktop(2); return 0; }
+int a_movedesk4(void) { movecurrenttodesktop(3); return 0; }
+int a_movedesk5(void) { movecurrenttodesktop(4); return 0; }
+int a_movedesk6(void) { movecurrenttodesktop(5); return 0; }
+int a_movedesk7(void) { movecurrenttodesktop(6); return 0; }
+int a_movedesk8(void) { movecurrenttodesktop(7); return 0; }
+int a_movedesk9(void) { movecurrenttodesktop(8); return 0; }
+int a_movedesk0(void) { movecurrenttodesktop(9); return 0; }
