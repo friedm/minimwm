@@ -78,66 +78,43 @@ struct window *getprevll(struct window *current, struct window *tail){
 void swapnextll(struct window *current, struct window *head) {
    if (head->next->next == NULL) return; //empty ll   
    if (current->next->next != NULL) { //swap with it
-      swapadjacentll(current,current->next);
+      swapll(current,current->next);
    }
    else {//swap with the first node
-      swapfirstlastll(head->next,current);
+      swapll(head->next,current);
    }
 }
 
 void swapprevll(struct window *current, struct window *tail) {
    if (tail->prev->prev == NULL) return; //empty ll
    if (current->prev->prev != NULL) { //swap   
-      swapadjacentll(current->prev,current);
+      swapll(current->prev,current);
    }
    else {//swap with the last node
-      swapfirstlastll(current,tail->prev);
+      swapll(current,tail->prev);
    }
 }
 
-void swapadjacentll(struct window *first, struct window *second) {
-   if (first->next != second || second->prev != first) {
-      l("swapadjacentll -- nodes not adjacent");
-      return;
-   }
-   struct window temp = *second;
-   
-   second->prev = first->prev;
-   second->next = first;
-   first->prev = second;
-   first->next = temp.next;
-
-   first->next->prev = first;
-   second->prev->next = second;
-}
-
-void swapfirstlastll(struct window *first, struct window *last) {
-   if (first->prev->prev != NULL || last->next->next != NULL) {
-      l("swapfirstlastll -- nodes not first and last");
-      return;
-   }
-   struct window temp = *last;
-   
-   last->prev = first->prev;
-   last->next = first->next;
-   first->prev = temp.prev;
-   first->next = temp.next;
-
-   first->next->prev = first;//tail node
-   first->prev->next = first;
-   last->prev->next = last;//head node
-   last->next->prev = last;
+void swapll(struct window *first, struct window *last) {
+   //fake it
+   Window temp = first->window;
+   first->window = last->window;
+   last->window = temp;
 }
 
 void logll(struct window *head) {
-   lmf("HEAD-->");
+   int count = 0;
+   lmf("HEAD<-->");
    struct window *trav = head;
    while(trav->next->next != NULL) {
       //lmf("%X:",trav->next->window);
-      char *name;
-      XFetchName(display,trav->next->window,&name);
-      lmf("%s-->",name); 
+      //char *name;
+      //XFetchName(display,trav->next->window,&name);
+      lmf("%X<-->",trav->next->window); 
       trav = trav->next;
+      count ++;
+      if (count > 4) break;
    }
-   lf("TAIL");
+   if (count == 5) l(".....");
+   else lf("TAIL");
 }

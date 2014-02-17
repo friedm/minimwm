@@ -30,7 +30,6 @@ struct window *getprevll (struct window *current, struct window *tail);
 void swapnextll(struct window *current, struct window *head);
 void swapprevll(struct window *current, struct window *tail);
 
-void swapadjacentll(struct window *first, struct window *second);
-void swapfirstlastll(struct window *first, struct window *last);
+void swapll(struct window *first, struct window *second);
 
 void logll (struct window *head);

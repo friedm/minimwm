@@ -30,13 +30,13 @@ int maprequest(XEvent *ev) {
    XSelectInput(display, win, PropertyChangeMask|FocusChangeMask);
    XMapWindow(display, win);
 
-   XMoveResizeWindow(display, win, 0,0,1920, 1080);
 
    //update data structures:add new window
    addwindowdesktop(win);
    logcurrentdesktop();
 
    //TODO tile
+   tile();
    updatefocus();
    //TODO tile, update focus, etc.
    return 0;
@@ -59,6 +59,7 @@ int destroynotify(XEvent *ev) {
    removewindow(ev->xdestroywindow.window);
    logcurrentdesktop();
 
+   tile();
    updatefocus();//set focus to the active window
 
    return 0;

@@ -8,10 +8,21 @@
 void *keystrs[][2] = {
    { "MS-q", &a_quit }, 
    { "MS-Return", &a_spawnterm },
+   { "M-space", &a_toggletilealg },
    { "M-j", &a_focusprev },
    { "M-k", &a_focusnext },
    { "MS-j", &a_moveprev },
-   { "MS-k", &a_movenext }
+   { "MS-k", &a_movenext },
+   { "M-1", &a_changedesk1 },
+   { "M-2", &a_changedesk2 },
+   { "M-3", &a_changedesk3 },
+   { "M-4", &a_changedesk4 },
+   { "M-5", &a_changedesk5 },
+   { "M-6", &a_changedesk6 },
+   { "M-7", &a_changedesk7 },
+   { "M-8", &a_changedesk8 },
+   { "M-9", &a_changedesk9 },
+   { "M-0", &a_changedesk0 }
 };
 
 void initkeys(void) {

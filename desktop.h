@@ -34,3 +34,5 @@ void moveprevwindow(void);
 
 void addwindowdesktop(Window);
 void removecurrentwindowdesktop(void);
+
+void logcurrentdesktop(void);

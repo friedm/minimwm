@@ -12,3 +12,11 @@ void updatefocus(void);
 
 void focusnextwindow(void);
 void focusprevwindow(void);
+
+void unmapwindows(void);
+void mapwindows(void);
+
+void changedesktop(int);
+
+void tile(void);
+void toggletilealg(void);

@@ -40,6 +40,7 @@ int main(void) {
       XNextEvent(display, &ev);
       if (handleevent(&ev) == 1) break;
    }
+   logcurrentdesktop();
    l("exiting...");
 
    XCloseDisplay(display);
