@@ -35,10 +35,10 @@ int maprequest(XEvent *ev) {
    addwindowdesktop(win);
    logcurrentdesktop();
 
-   //TODO tile
+   //tile
    tile();
    updatefocus();
-   //TODO tile, update focus, etc.
+   
    return 0;
 }
 

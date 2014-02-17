@@ -26,11 +26,13 @@ int a_focusprev(void) {
 
 int a_movenext(void) {
    movewindownext();
+   tile();
    return 0;
 }
 
 int a_moveprev(void) {
    movewindowprev();
+   tile();
    return 0;
 }
 

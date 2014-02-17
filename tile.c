@@ -45,11 +45,30 @@ void changedesktop(int desk) {
 }
 
 void tilevertical(void) {//tile windows horizontally
-   l("tilevert");
+   int width = screens[currentscreen].width;
+   int height = screens[currentscreen].height;
+   int count = 0;
+
+   struct window *trav = desktops[screens[currentscreen].desktop].headwin;
+   while(trav->next->next != NULL) {
+      count ++;         
+      trav = trav->next;
+   }
+   if (count == 0) return; //no windows
+
+   int avgwidth = width / count;
+   avgwidth += width % count;
+   int pos = 0;
+
+   trav = desktops[screens[currentscreen].desktop].headwin;
+   while(trav->next->next != NULL) {
+      XMoveResizeWindow(display,trav->next->window,pos,0,avgwidth,height);
+      pos += avgwidth;
+      trav = trav->next;
+   }
 }
 
 void tilefullscreen(void) {//set all windows to full screen size
-   l("tilefull");
    struct window *trav = desktops[screens[currentscreen].desktop].headwin;
    while (trav->next->next != NULL) {
       XMoveResizeWindow(display, trav->next->window, 0,0,screens[currentscreen].width, screens[currentscreen].height);
