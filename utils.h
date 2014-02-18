@@ -8,5 +8,5 @@ int getmaskstr(char *);
 int getkeycodefromstring(const char *);
 
 
-int spawn(const char *);
+void spawn(const char *);
 void kill(Window window);

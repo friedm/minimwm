@@ -3,3 +3,4 @@
 
 Display *display;
 Window root;
+int running;

@@ -37,7 +37,6 @@ void *keystrs[][2] = {
    { "MS-8", &a_movedesk8 },
    { "MS-9", &a_movedesk9 },
    { "MS-0", &a_movedesk0 }
-
 };
 
 void initkeys(void) {
@@ -64,11 +63,11 @@ void grabkeys(void) {
    }
 }
 
-int handlekey(int code, int mask) {
+void handlekey(int code, int mask) {
    int key = findregisteredkey(code,mask);
-   if (key == -1) return 0;//not a registered key
+   if (key == -1) return;//not a registered key
 
-   return keycodes[key].action();
+   keycodes[key].action();
 }
 
 int findregisteredkey(int code, int mask) {

@@ -1,14 +1,17 @@
 CODE ORGANIZATION!
-stop the "return 0" madness
 separate tile.c
 
 bug -- can adjust window width to negative, cause crash
-bug -- window width travels
+bug -- window width can travel
 bug -- spotify can still crash if it is force quit
+
+handle fullscreen windows specifically
 
 actions to cycle current screen
 action to move current window to next screen's desktop
 when another screen has a desktop, and the current screen wants to swap to it,
    also swap the other screen (exchange desktops) -- no two screens should ever point to the same desktop
+
+key configuration from file
 
 think of a better name

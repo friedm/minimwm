@@ -6,7 +6,7 @@
 struct key {
    int code;
    int mask;
-   int (*action)();
+   void (*action)();
 };
 struct key *keycodes;
 
@@ -15,6 +15,6 @@ int numkeys;
 void initkeys(void);
 void freekeys(void);
 void grabkeys(void);
-int handlekey(int,int);
+void handlekey(int,int);
 
 int findregisteredkey(int,int);

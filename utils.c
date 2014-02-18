@@ -42,17 +42,13 @@ int getkeycodefromstring(const char *kstr) {
 }
 
 //spawn a new process and run a command
-int spawn(const char *cmd) {
+void spawn(const char *cmd) {
    int pid = fork();
    if (pid < 0) l("error spawning process");
    else if (pid == 0) {
       setsid();
       const char *args[] = {cmd, NULL};
       execvp(cmd, args);
-      return 1;
-   }
-   else {
-      return 0;
    }
 }
 

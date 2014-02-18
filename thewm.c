@@ -35,10 +35,11 @@ int main(void) {
 
    grabkeys();
 
+   running = 1;
    XEvent ev;
-   while (1) {
+   while (running) {
       XNextEvent(display, &ev);
-      if (handleevent(&ev) == 1) break;
+      handleevent(&ev);
    }
    logcurrentdesktop();
    l("exiting...");
