@@ -1,6 +1,6 @@
 #include <X11/Xlib.h>
 
-#include "thewm.h"
+#include "minimwm.h"
 
 KeyCode getKCode(KeySym);
 KeyCode getKCodeStr(const char *);

@@ -1,6 +1,6 @@
 #include <X11/Xlib.h>
 
-#include "thewm.h"
+#include "minimwm.h"
 #include "input.h"
 #include "tile.h"
 
@@ -38,10 +38,6 @@ void maprequest(XEvent *ev) {
    updatefocus();
 }
 
-void mapnotify(XEvent *ev) {
-   lf("Got map notify! %X",ev->xmap.window);
-}
-
 void unmapnotify(XEvent *ev) {
    lf("Got unmap notify! %X",ev->xunmap.window);
    //since we do tell windows to map and unmap, we can't remove all windows here
@@ -65,24 +61,11 @@ void destroynotify(XEvent *ev) {
    }
 }
 
-void configurerequest(XEvent *ev) {
-   //lf("GOT CONFIGURE REQUEST: %X",ev->xconfigurerequest.window);
-   //lf("x: %d, y: %d, width: %d, height: %d",ev->xconfigurerequest.x,ev->xconfigurerequest.y, ev->xconfigurerequest.width, ev->xconfigurerequest.height);
-   ////configure window how it wants, then tile over it
-   //XConfigureRequestEvent *cr = &ev->xconfigurerequest;
-   //XWindowChanges wc = { cr->x, cr->y, cr->width, cr->height, cr->border_width, cr->above, cr->detail };
-   //if (XConfigureWindow(display, cr->window, cr->value_mask, &wc)) XSync(display, False);
-   //tile();
-   //updatefocus();
-}
-
 void handleevent(XEvent *ev) {
    switch(ev->type) {
       case KeyPress: keypress(ev); break;
       case MapRequest: maprequest(ev); break;
-      case MapNotify: mapnotify(ev); break;
       case UnmapNotify: unmapnotify(ev); break;
       case DestroyNotify: destroynotify(ev); break;
-      case ConfigureRequest: configurerequest(ev); break;
    }
 }

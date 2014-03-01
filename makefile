@@ -1,8 +1,8 @@
-thewm: *.c *.h
-	gcc -I/usr/X11R6/include -L/usr/X11R6/lib -lX11 -o thewm thewm.c input.c actions.c events.c utils.c log.c tile.c screen.c desktop.c window.c
+minimwm: *.c *.h
+	gcc -I/usr/X11R6/include -L/usr/X11R6/lib -lX11 -o minimwm minimwm.c input.c actions.c events.c utils.c log.c tile.c screen.c desktop.c window.c
 
-all: thewm
+all: minimwm
 
-run: thewm
+run: minimwm
 	startx
-	cat /tmp/thewm.log
+	cat /tmp/minimwm.log

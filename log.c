@@ -8,8 +8,8 @@
  */
 
 void initlog() {
-   logfile = fopen("/tmp/thewm.log","w");
-   l("THEWM STARTED");
+   logfile = fopen("/tmp/minimwm.log","w");
+   l("MINIMWM STARTED");
 }
 
 void closelog() {

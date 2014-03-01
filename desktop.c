@@ -1,4 +1,4 @@
-#include "thewm.h"
+#include "minimwm.h"
 #include "desktop.h"
 #include "screen.h"
 

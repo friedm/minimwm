@@ -3,13 +3,13 @@
 #include <stdio.h>
 #include <X11/Xlib.h>
 
-#include "thewm.h"
+#include "minimwm.h"
 #include "events.h"
 #include "input.h"
 #include "tile.h"
 
 /*
- * thewm - mouse's bane
+ * minimwm - minimal tiling window manager
  * author: Matt Friedman
  */
 

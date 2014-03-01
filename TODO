@@ -1,12 +1,12 @@
-CODE ORGANIZATION!
-separate tile.c
+ORGANIZATION!:
+tile, desktop, screen, and window .c
 
-bug -- can adjust window width to negative, cause crash
-bug -- window width can travel
-bug -- spotify can still crash if it is force quit
+BUGS:
+can adjust window width to negative, cause crash
+window width can travel
+spotify can still crash if it is force quit
 
-handle fullscreen windows specifically
-
+FEATURES:
 actions to cycle current screen
 action to move current window to next screen's desktop
 when another screen has a desktop, and the current screen wants to swap to it,
@@ -14,4 +14,4 @@ when another screen has a desktop, and the current screen wants to swap to it,
 
 key configuration from file
 
-think of a better name
+do something about fullscreen?
